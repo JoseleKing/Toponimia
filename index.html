@@ -37,7 +37,7 @@
 
   <div class="hoja">
     <header class="cabecera">
-      <span id="numero" class="numero"></span>
+      <button class="boton-icono boton-ayuda" id="abrir-reglas" type="button" aria-label="Cómo se juega">?</button>
       <h1><img src="icons/toponimia-logo.svg" width="36" height="36" alt="">Toponimia</h1>
       <button class="boton-icono" id="abrir-estadisticas" type="button" aria-label="Estadísticas">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-7M22 20H2"/></svg>
@@ -46,6 +46,35 @@
 
     <main id="app" aria-live="polite"></main>
   </div>
+
+  <dialog id="reglas" class="reglas" aria-labelledby="reglas-titulo">
+    <button class="cerrar" type="button" aria-label="Cerrar">×</button>
+    <img class="reglas-logo" src="icons/toponimia-logo.svg" width="64" height="64" alt="">
+    <h2 id="reglas-titulo" tabindex="-1" autofocus>Cómo se juega</h2>
+    <p class="etimologia"><em>toponimia</em>, del griego <em>tópos</em>, «lugar», y <em>ónoma</em>, «nombre».</p>
+
+    <p class="entradilla">Cada nombre de lugar es una palabra que se quedó a vivir en el mapa. Quien la puso hablaba otra lengua y nombraba lo que veía: un río grande, una muralla, un castillo, unos árboles. Los pueblos se marcharon, pero los nombres se quedaron, y siguen diciendo lo mismo para quien sepa leerlos.</p>
+
+    <ul class="reglas-lista">
+      <li>Cada día hay <strong>tres lugares</strong> del mundo hispanohablante, los mismos para todos. Cambian a medianoche.</li>
+      <li>Elige <strong>qué significa su nombre</strong> entre tres opciones. A veces la pregunta va <strong>del revés</strong>: te damos el significado y eliges el lugar.</li>
+      <li>Tienes <strong>un solo toque</strong> por ronda: lo que eliges, eliges.</li>
+      <li>Después verás la <strong>forma original</strong>, su <strong>lengua de origen</strong>, una nota y el lugar en el mapa.</li>
+      <li>Juega cada día para mantener tu <strong>racha</strong> y comparte tu resultado.</li>
+    </ul>
+
+    <h3>Las capas del mapa</h3>
+    <p>El mapa es como un yacimiento: cada lengua dejó su capa de nombres.</p>
+    <ul class="capas">
+      <li><span class="lengua" style="--color-lengua:#6B4E71">fenicio</span><span>Cádiz todavía conserva <em>Gadir</em>, «recinto amurallado».</span></li>
+      <li><span class="lengua" style="--color-lengua:#7A5C3E">latín</span><span>Mérida recuerda a los soldados <em>eméritos</em> de Augusto.</span></li>
+      <li><span class="lengua" style="--color-lengua:#3F6B5C">árabe</span><span>Casi cada Guada- esconde un <em>wādī</em>, un río.</span></li>
+      <li><span class="lengua" style="--color-lengua:#9A6A2F">náhuatl</span><span>Guatemala y Oaxaca guardan árboles y guajes.</span></li>
+    </ul>
+    <p class="curiosidad"><strong>Para empezar el viaje.</strong> Se suele decir que el nombre de <em>Hispania</em> también vino del fenicio, y que significaba «tierra de damanes», unos animalillos que los navegantes habrían confundido con los conejos. No se sabe si es cierto, pero es tan bonito que cuesta no creerlo.</p>
+
+    <button class="boton empezar" type="button">¡A jugar!</button>
+  </dialog>
 
   <dialog id="estadisticas" aria-labelledby="estadisticas-titulo">
     <button class="cerrar" type="button" aria-label="Cerrar">×</button>

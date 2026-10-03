@@ -39,3 +39,6 @@ Después sube `VERSION` en `sw.js` para que los jugadores reciban los cambios si
 
 - `?dia=N` fuerza el día N (las partidas de prueba no se guardan ni cuentan en las estadísticas).
 - En local: `python3 -m http.server` y abre `http://localhost:8000`.
+- **Empezar de cero:** `http://localhost:8000/reiniciar/` borra la partida, el historial y la
+  racha de ese navegador (clave `toponimia:v1` del `localStorage`), y las instrucciones vuelven
+  a salir la primera vez.

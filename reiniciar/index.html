@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Reiniciar Toponimia</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#B23A2E">
+  <link rel="icon" href="../icons/toponimia-32.png" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="hoja">
+    <header class="cabecera">
+      <span></span>
+      <h1><img src="../icons/toponimia-logo.svg" width="36" height="36" alt="">Toponimia</h1>
+      <span></span>
+    </header>
+
+    <main>
+      <section class="mensaje" id="pregunta">
+        <img src="../icons/toponimia-logo.svg" width="96" height="96" alt="">
+        <h2>Volver a la carta en blanco</h2>
+        <p>Se borrarán tus partidas, la racha y el historial guardados en este navegador, y las instrucciones volverán a salir al abrir el juego. No se puede deshacer.</p>
+        <button class="boton" id="borrar" type="button">Borrar mi progreso</button>
+        <a class="boton boton-secundario" href="../">Volver al juego</a>
+      </section>
+      <section class="mensaje" id="hecho" hidden>
+        <img src="../icons/toponimia-logo.svg" width="96" height="96" alt="">
+        <h2>Hecho</h2>
+        <p role="status">Tu progreso se ha borrado. Volviendo al mapa…</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('borrar').addEventListener('click', function () {
+      try { window.localStorage.removeItem('toponimia:v1'); } catch (e) { /* sin almacenamiento */ }
+      document.getElementById('pregunta').hidden = true;
+      document.getElementById('hecho').hidden = false;
+      setTimeout(function () { location.href = '../'; }, 1500);
+    });
+  </script>
+</body>
+</html>

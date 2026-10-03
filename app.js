@@ -46,6 +46,7 @@ const CHINCHETA =
 const app = document.getElementById('app');
 const aviso = document.getElementById('aviso');
 const panel = document.getElementById('estadisticas');
+const reglas = document.getElementById('reglas');
 
 let DIAS = [];
 let mapa = null;
@@ -200,7 +201,6 @@ function render() {
   quitarMapa();
   const numero = numeroActual();
   const rondas = rondasDe(numero);
-  document.getElementById('numero').textContent = numero >= 1 ? `nº ${numero}` : '';
 
   if (numero < 1) return pintarFuera(antesDeEmpezar());
   if (!rondas) return pintarFuera(finDelPrototipo(numero));
@@ -315,7 +315,7 @@ function ronda(numero, indice, r, respuesta) {
 
   return `
     <section class="reto">
-      <p class="ronda-numero">Ronda ${indice + 1} de ${RONDAS}${inversa ? ' · <span class="del-reves">del revés</span>' : ''}</p>
+      <p class="ronda-numero">Nº ${numero} · Ronda ${indice + 1} de ${RONDAS}${inversa ? ' · <span class="del-reves">del revés</span>' : ''}</p>
       ${enunciado}
       <div class="opciones">${opciones}</div>
     </section>
@@ -417,6 +417,7 @@ function resultado(numero, rondas, respuestas) {
 
   return `
     <section class="resultado">
+      <p class="ronda-numero">Toponimia nº ${numero}</p>
       <p class="cuadros" aria-hidden="true">${aciertos.map((a) => `<span class="${a ? 'bien' : 'mal'}"></span>`).join('')}</p>
       <h2>${total} de ${RONDAS}</h2>
       <p class="frase">${frases[total]}</p>
@@ -465,6 +466,25 @@ document.getElementById('abrir-estadisticas').addEventListener('click', () => {
   pintarEstadisticas();
   panel.showModal();
 });
+
+/* ---------- Reglas ---------- */
+
+reglas.querySelectorAll('.cerrar, .empezar').forEach((b) => b.addEventListener('click', () => reglas.close()));
+reglas.addEventListener('click', (ev) => {
+  if (ev.target === reglas) reglas.close();
+});
+document.getElementById('abrir-reglas').addEventListener('click', () => {
+  reglas.scrollTop = 0;
+  reglas.showModal();
+});
+
+/** La primera vez que se abre el juego, las reglas salen solas. */
+function reglasPrimeraVez() {
+  if (guardado.reglasVistas) return;
+  reglas.showModal();
+  guardado = { ...guardado, reglasVistas: true };
+  guardar();
+}
 
 /* ---------- Acciones ---------- */
 
@@ -539,6 +559,7 @@ async function iniciar() {
 
   render();
   retirarPortada();
+  setTimeout(reglasPrimeraVez, 1300);
 
   // Cada segundo: la cuenta atrás y, a medianoche, el día nuevo.
   let ultimoNumero = numeroDeHoy();
