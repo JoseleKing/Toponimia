@@ -1,0 +1,18 @@
+{
+  "name": "Toponimia",
+  "short_name": "Toponimia",
+  "description": "Tres lugares al día: descubre qué significa su nombre.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3EBDD",
+  "theme_color": "#B23A2E",
+  "icons": [
+    { "src": "icons/toponimia-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/toponimia-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/toponimia-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/toponimia-icono.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

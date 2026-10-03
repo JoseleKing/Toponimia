@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Toponimia</title>
+  <meta name="description" content="Tres lugares al día: descubre qué significa su nombre.">
+  <meta name="theme-color" content="#B23A2E">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/toponimia-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="icons/toponimia-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Toponimia">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Portada en línea: se pinta antes de que cargue styles.css. Repite los colores de :root. -->
+  <style>
+    #portada {
+      position: fixed; inset: 0; z-index: 2000;
+      display: grid; place-content: center; justify-items: center; gap: 0.9rem;
+      background: #F3EBDD; color: #2B2420;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+    #portada img { width: 8rem; height: 8rem; animation: asomar 0.6s ease-out; }
+    #portada p { margin: 0; font: 2.4rem/1 "IM Fell English", Georgia, serif; animation: asomar 0.6s ease-out; }
+    #portada.oculta { opacity: 0; visibility: hidden; }
+    @keyframes asomar { from { opacity: 0; transform: scale(0.9) rotate(-20deg); } }
+  </style>
+</head>
+<body>
+  <div id="portada" aria-hidden="true"><img src="icons/toponimia-logo.svg" width="128" height="128" alt=""><p>Toponimia</p></div>
+
+  <div class="hoja">
+    <header class="cabecera">
+      <span id="numero" class="numero"></span>
+      <h1><img src="icons/toponimia-logo.svg" width="36" height="36" alt="">Toponimia</h1>
+      <button class="boton-icono" id="abrir-estadisticas" type="button" aria-label="Estadísticas">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-7M22 20H2"/></svg>
+      </button>
+    </header>
+
+    <main id="app" aria-live="polite"></main>
+  </div>
+
+  <dialog id="estadisticas" aria-labelledby="estadisticas-titulo">
+    <button class="cerrar" type="button" aria-label="Cerrar">×</button>
+    <h2 id="estadisticas-titulo">Estadísticas</h2>
+    <div id="estadisticas-cuerpo"></div>
+  </dialog>
+
+  <div id="aviso" class="aviso" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous" defer></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="volver-almanaque.js" defer></script>
+</body>
+</html>
