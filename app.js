@@ -197,6 +197,21 @@ function quitarMapa() {
   }
 }
 
+/** Con los tres lugares de hoy jugados, la mano ☜ marca Toponimia como «Hecho» en Almanaque,
+    y su hoja muestra los aciertos del día y la racha. */
+function avisarAlmanaque(numero, rondas, respuestas) {
+  const aciertos = aciertosDe(rondas, respuestas);
+  const avisar = () => window.almanaqueHecho?.({
+    aciertos: aciertos.filter(Boolean).length,
+    total: aciertos.length,
+    racha: rachaVigente(guardado.estadisticas, numero),
+  });
+  // app.js va antes que volver-almanaque.js (los dos con defer): si aún no existe,
+  // se espera a DOMContentLoaded, que llega después de todos los scripts con defer.
+  if (window.almanaqueHecho) avisar();
+  else document.addEventListener('DOMContentLoaded', avisar, { once: true });
+}
+
 function render() {
   quitarMapa();
   const numero = numeroActual();
@@ -210,7 +225,7 @@ function render() {
     vista = Math.min(respuestasDe(numero).length, RONDAS);
   }
   const respuestas = respuestasDe(numero);
-  if (respuestas.length === RONDAS && !diaPrueba && window.almanaqueHecho) window.almanaqueHecho();
+  if (respuestas.length === RONDAS && !diaPrueba) avisarAlmanaque(numero, rondas, respuestas);
 
   app.innerHTML = `
     ${diaPrueba ? avisoPrueba(numero) : ''}
