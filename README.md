@@ -13,14 +13,15 @@ const FECHA_INICIO = '2026-10-03';
 ```
 
 Ese día es el nº 1, y se avanza uno cada medianoche (hora local del jugador). Pasado el último
-día de `data/dias.json` aparece el mensaje de fin del prototipo.
+día de `data/dias.json`, el ciclo vuelve a empezar por el primero; el número del día sigue
+creciendo. Con 39 días, el último es el 10 de noviembre de 2026 y el 11 vuelve el día 1.
 
 ## Añadir días
 
 Añade objetos al final de `data/dias.json`, con `dia` correlativo y tres rondas:
 
 ```json
-{ "dia": 11, "rondas": [
+{ "dia": 40, "rondas": [
   { "lugar": "…", "region": "…", "lengua": "latín", "original": "…",
     "correcta": "…", "opciones": ["…", "…", "…"], "nota": "…", "lat": 0, "lon": 0 }
 ]}

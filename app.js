@@ -24,12 +24,15 @@ const LENGUAS = {
   'guaraní': '#4E7A63',
   'taíno': '#3D7378',
   'mapudungun': '#6E6448',
+  'aimara': '#7A4A5E',
+  'caddo': '#5B6E3A',
   'español': '#A0453A',
   'italiano': '#47658C',
   'portugués': '#6C7F3A',
   'francés': '#5A5F8C',
   'inglés': '#5C6670',
   'vasco': '#7E3F4D',
+  'catalán': '#8C5A2E',
   'celta': '#56704F',
   'germánico': '#6A6A5A',
 };
@@ -110,8 +113,11 @@ function fechaLarga(numero) {
 
 /* ---------- Rondas ---------- */
 
+/** Rondas del día `numero`: al acabarse los días, el ciclo vuelve a empezar por el primero. */
 function rondasDe(numero) {
-  const dia = DIAS.find((d) => d.dia === numero);
+  if (numero < 1 || !DIAS.length) return null;
+  const enCiclo = ((numero - 1) % DIAS.length) + 1;
+  const dia = DIAS.find((d) => d.dia === enCiclo);
   return dia ? dia.rondas : null;
 }
 
@@ -218,7 +224,6 @@ function render() {
   const rondas = rondasDe(numero);
 
   if (numero < 1) return pintarFuera(antesDeEmpezar());
-  if (!rondas) return pintarFuera(finDelPrototipo(numero));
 
   if (numero !== diaMostrado) {
     diaMostrado = numero;
@@ -263,19 +268,6 @@ function antesDeEmpezar() {
       <img src="icons/toponimia-logo.svg" width="96" height="96" alt="">
       <h2>Todavía no</h2>
       <p>Toponimia empieza el ${esc(fechaLarga(1))}. ¡Vuelve entonces!</p>
-    </section>`;
-}
-
-function finDelPrototipo(numero) {
-  const e = guardado.estadisticas;
-  return `
-    ${diaPrueba ? avisoPrueba(numero) : ''}
-    <section class="mensaje">
-      <img src="icons/toponimia-logo.svg" width="96" height="96" alt="">
-      <h2>Fin del viaje, por ahora</h2>
-      <p>Has llegado al final del prototipo: ya no quedan lugares por descubrir.</p>
-      ${e.jugadas ? `<p>Jugaste ${e.jugadas} ${e.jugadas === 1 ? 'día' : 'días'} y acertaste ${e.aciertos} de ${e.jugadas * RONDAS}.</p>` : ''}
-      <p>Gracias por jugar. Pronto habrá más topónimos.</p>
     </section>`;
 }
 
