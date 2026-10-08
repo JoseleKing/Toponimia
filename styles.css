@@ -11,12 +11,30 @@
   --verde: #4E6B45;
   --verde-claro: #E6EBDB;
   --rojo-claro: #F3DCD5;
+  --mapa-fondo: #EDE4D3;
 
   --titular: "IM Fell English", Georgia, serif;
   --texto: "EB Garamond", Georgia, serif;
   --radio: 14px;
   --sombra: 0 1px 2px rgb(43 36 32 / 0.06), 0 6px 18px rgb(43 36 32 / 0.06);
   color-scheme: light;
+}
+
+/* Modo oscuro: solo si se elige en Almanaque (data-theme lo pone index.html). */
+:root[data-theme="dark"] {
+  --fondo: #1A1612;
+  --superficie: #262019;
+  --rojo: #E07063;
+  --rojo-oscuro: #F0A396;
+  --tinta: #EFE4CF;
+  --gris: #A3937F;
+  --linea: #3E3429;
+  --verde: #8FB27A;
+  --verde-claro: #263020;
+  --rojo-claro: #3B221D;
+  --mapa-fondo: #2A2520;
+  --sombra: 0 1px 2px rgb(0 0 0 / 0.3), 0 6px 18px rgb(0 0 0 / 0.3);
+  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -186,6 +204,13 @@ button { font: inherit; color: inherit; }
   color: var(--color-lengua);
   font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
 }
+/* Los colores de las lenguas son oscuros: en modo oscuro se aclaran para leerse. */
+[data-theme="dark"] .lengua {
+  background: color-mix(in srgb, var(--color-lengua) 30%, var(--superficie));
+  border-color: color-mix(in srgb, var(--color-lengua) 60%, transparent);
+  color: color-mix(in srgb, var(--color-lengua) 45%, #fff);
+}
+[data-theme="dark"] .mapa .leaflet-tile-pane { filter: sepia(0.3) saturate(0.8); }
 
 .significado { margin: 0 0 0.6rem; font-size: 1.3rem; font-weight: 500; }
 .rotulo {
@@ -201,7 +226,7 @@ button { font: inherit; color: inherit; }
   margin-top: 1rem;
   border-radius: 10px;
   overflow: hidden;
-  background: #EDE4D3;
+  background: var(--mapa-fondo);
   border: 1px solid var(--linea);
   opacity: 0;
   transition: opacity 0.5s;
@@ -212,7 +237,7 @@ button { font: inherit; color: inherit; }
 /* Leaflet mezcla las teselas con plus-lighter; con el filtro eso deja una raya clara entre teselas. */
 .mapa .leaflet-container img.leaflet-tile, .mapa img.leaflet-tile { mix-blend-mode: normal; }
 .mapa .leaflet-control-attribution {
-  background: rgb(251 246 236 / 0.8);
+  background: color-mix(in srgb, var(--superficie) 80%, transparent);
   font: 0.6rem/1.4 system-ui, sans-serif;
   color: var(--gris);
 }

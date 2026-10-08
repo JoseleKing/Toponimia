@@ -6,6 +6,14 @@
   <title>Reiniciar Toponimia</title>
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#B23A2E">
+  <script>
+    // Modo claro u oscuro: el que se elija en Almanaque, común a todos los juegos. Sin elegir, claro.
+    try {
+      if (localStorage.getItem('almanaque:tema') === 'dark') {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    } catch (e) {}
+  </script>
   <link rel="icon" href="../icons/toponimia-32.png" type="image/png" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

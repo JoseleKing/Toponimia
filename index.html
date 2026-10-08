@@ -7,6 +7,15 @@
   <meta name="description" content="Tres lugares al día: descubre qué significa su nombre.">
   <meta name="theme-color" content="#B23A2E">
   <meta name="color-scheme" content="light">
+  <script>
+    // Modo claro u oscuro: el que se elija en Almanaque, común a todos los juegos. Sin elegir, claro.
+    try {
+      if (localStorage.getItem('almanaque:tema') === 'dark') {
+        document.documentElement.dataset.theme = 'dark';
+        document.querySelector('meta[name="color-scheme"]').content = 'dark';
+      }
+    } catch (e) {}
+  </script>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/toponimia-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="icons/toponimia-180.png">
@@ -28,6 +37,7 @@
     }
     #portada img { width: 8rem; height: 8rem; animation: asomar 0.6s ease-out; }
     #portada p { margin: 0; font: 2.4rem/1 "IM Fell English", Georgia, serif; animation: asomar 0.6s ease-out; }
+    [data-theme="dark"] #portada { background: #1A1612; color: #EFE4CF; }
     #portada.oculta { opacity: 0; visibility: hidden; }
     @keyframes asomar { from { opacity: 0; transform: scale(0.9) rotate(-20deg); } }
   </style>

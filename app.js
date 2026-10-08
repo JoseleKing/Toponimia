@@ -377,7 +377,9 @@ function montarMapa(contenedor, r) {
 
   let cargadas = 0;
   // Esri Light Gray Canvas: claro, discreto y sin clave (CARTO ya pide clave de API).
-  const capa = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  // Con el modo oscuro elegido en Almanaque, su pareja Dark Gray.
+  const base = document.documentElement.dataset.theme === 'dark' ? 'World_Dark_Gray_Base' : 'World_Light_Gray_Base';
+  const capa = L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/${base}/MapServer/tile/{z}/{y}/{x}`, {
     maxZoom: 16,
     crossOrigin: true,
     attribution: 'Teselas © <a href="https://www.esri.com" target="_blank" rel="noopener">Esri</a> — Esri, HERE, Garmin, © OpenStreetMap',
