@@ -14,7 +14,7 @@ const FECHA_INICIO = '2026-10-03';
 
 Ese día es el nº 1, y se avanza uno cada medianoche (hora local del jugador). Pasado el último
 día de `data/dias.json`, el ciclo vuelve a empezar por el primero; el número del día sigue
-creciendo. Con 39 días, el último es el 10 de noviembre de 2026 y el 11 vuelve el día 1.
+creciendo. Con 69 días, el último es el 10 de diciembre de 2026 y el 11 vuelve el día 1.
 
 ## Añadir días
 
