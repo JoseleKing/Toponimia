@@ -519,9 +519,10 @@ function responder(numero, indice, valor) {
   if (revelada) setTimeout(() => revelada.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250);
 }
 
+// Una marca por lugar: ▰ acertado, ▱ fallado. «Toponimia nº 7 ▰▱▰ 2/3 aciertos» y el enlace.
 function textoCompartir(numero, aciertos) {
-  const casillas = aciertos.map((a) => (a ? '🟩' : '🟥')).join('');
-  return `🧭 Toponimia nº ${numero}\n${casillas}\n${location.origin}${location.pathname}`;
+  const marcas = aciertos.map((a) => (a ? '▰' : '▱')).join('');
+  return `Toponimia nº ${numero} ${marcas} ${aciertos.filter(Boolean).length}/${aciertos.length} aciertos\njoseleking.github.io/Toponimia`;
 }
 
 async function compartir(numero, aciertos) {
