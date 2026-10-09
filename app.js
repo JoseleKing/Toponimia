@@ -557,8 +557,8 @@ function retirarPortada() {
   if (!portada) return;
   setTimeout(() => {
     portada.classList.add('oculta');
-    setTimeout(() => portada.remove(), 400);
-  }, Math.max(0, 1100 - performance.now()));
+    setTimeout(() => portada.remove(), 500);
+  }, Math.max(0, 1500 - performance.now()));
 }
 
 async function iniciar() {
@@ -572,7 +572,7 @@ async function iniciar() {
 
   render();
   retirarPortada();
-  setTimeout(reglasPrimeraVez, 1300);
+  setTimeout(reglasPrimeraVez, 1850);
 
   // Cada segundo: la cuenta atrás y, a medianoche, el día nuevo.
   let ultimoNumero = numeroDeHoy();
