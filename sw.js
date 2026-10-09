@@ -5,7 +5,7 @@
    - Fuentes, Leaflet y teselas del mapa: primero la caché, porque no cambian.
    Si cambias la lista de archivos, sube el número de VERSION. */
 
-const VERSION = 'toponimia-v11';
+const VERSION = 'toponimia-v12';
 const EXTERNOS = 'toponimia-externos';
 const MAX_EXTERNOS = 250;
 

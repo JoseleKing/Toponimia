@@ -551,14 +551,20 @@ function mostrarAviso(texto) {
 
 /* ---------- Arranque ---------- */
 
-/** La portada con el logo se ve al menos un instante y luego se desvanece. */
-function retirarPortada() {
+/**
+ * La portada con el logo se ve al menos 1,5 s desde que se abre la página (y 1,4 s desde que se
+ * pinta, por si tarda la primera visita) y luego se desvanece. `despues` corre poco después de
+ * empezar el fundido.
+ */
+function retirarPortada(despues) {
   const portada = document.getElementById('portada');
-  if (!portada) return;
+  if (!portada) return despues?.();
+  const pintada = performance.getEntriesByName('first-contentful-paint')[0]?.startTime ?? performance.now();
   setTimeout(() => {
     portada.classList.add('oculta');
     setTimeout(() => portada.remove(), 500);
-  }, Math.max(0, 1500 - performance.now()));
+    if (despues) setTimeout(despues, 350);
+  }, Math.max(0, 1500 - performance.now(), 1400 - (performance.now() - pintada)));
 }
 
 async function iniciar() {
@@ -571,8 +577,7 @@ async function iniciar() {
   }
 
   render();
-  retirarPortada();
-  setTimeout(reglasPrimeraVez, 1850);
+  retirarPortada(reglasPrimeraVez);
 
   // Cada segundo: la cuenta atrás y, a medianoche, el día nuevo.
   let ultimoNumero = numeroDeHoy();
