@@ -47,10 +47,11 @@
       transition: opacity 0.4s, visibility 0.4s;
     }
     #portada img { width: 8rem; height: 8rem; animation: asomar 0.6s ease-out; }
-    #portada p { margin: 0; font: 2.4rem/1 "IM Fell English", Georgia, serif; animation: asomar 0.6s ease-out; }
+    #portada p { margin: 0; font: 2.4rem/1 "IM Fell English", Georgia, serif; animation: fundir 0.6s ease-out; }
     [data-theme="dark"] #portada { background: #1A1612; color: #EFE4CF; }
     #portada.oculta { opacity: 0; visibility: hidden; }
     @keyframes asomar { from { opacity: 0; transform: scale(0.9) rotate(-20deg); } }
+    @keyframes fundir { from { opacity: 0; } }
   </style>
 </head>
 <body>
